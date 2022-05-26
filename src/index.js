@@ -1,4 +1,4 @@
 import { log } from './utils';
-import './app.css';
+import './todos.css';
 
 log('webpack5 boilerplate');
