@@ -89,6 +89,7 @@ li .text {
   margin-left: 10px;
 }
 
+/* isDone = true */
 li.checked {
   color: #888;
 }
