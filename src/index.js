@@ -3,10 +3,7 @@ import { printTodos } from './print-todos';
 import { init as initForm } from './form';
 import './todos.css';
 
-const todos = [
-    {title: '$input.value', isDone: false},
-    {title: '$input.value', isDone: false}
-];
+const todos = [];
 
 
 const deleteTodo = (index) => {
