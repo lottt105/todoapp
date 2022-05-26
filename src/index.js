@@ -1,4 +1,5 @@
 import { log } from './utils';
+import { printTodos } from './print-todos';
 import './todos.css';
 
 const todos = [
@@ -8,20 +9,7 @@ const todos = [
 
 const $form  = document.querySelector('.new-task')
 const $input = document.querySelector('.new-task > input')
-const $todos = document.querySelector('#todos')
 
-const printTodos = () => {
-    const html = todos.map((todo, index) => {
-        return `
-        <li data-index="${index}">
-            <button class="delete">×</button>
-            <input type="checkbox" class="toggle-checked">
-            <span class="text">${todo.title}</span>
-        </li>
-      `;
-    });
-    $todos.innerHTML = `<ul>${html.join('')}</ul>`;
-};
 const checkTodo = (e) => {
     e.preventDefault();
     console.log($input.value);
@@ -35,7 +23,7 @@ const checkTodo = (e) => {
     $input.value = '';
 
     // todos 출력'
-    printTodos();
+    print();
 
 };
 const deleteTodo = (index) => {
@@ -43,10 +31,14 @@ const deleteTodo = (index) => {
     // todos에서 index번째 todo 삭제
     todos.splice(index, 1);
 
-    printTodos();
+    print();
 };
 const toggleTodo = (index) => {
     console.log('toggle');
+};
+
+const print = () => {
+    printTodos(todos);
 };
 
 // 폼, input 입력 이벤트 추가하기
@@ -65,4 +57,4 @@ document.body.addEventListener('click', (e) => {
 })
 
 //todos 뿌려주기
-printTodos();
+print();
