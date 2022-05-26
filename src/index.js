@@ -11,9 +11,9 @@ const $input = document.querySelector('.new-task > input')
 const $todos = document.querySelector('#todos')
 
 const printTodos = () => {
-    const html = todos.map(todo => {
+    const html = todos.map((todo, index) => {
         return `
-        <li>
+        <li data-index="${index}">
             <button class="delete">×</button>
             <input type="checkbox" class="toggle-checked">
             <span class="text">${todo.title}</span>
@@ -38,18 +38,29 @@ const checkTodo = (e) => {
     printTodos();
 
 };
+const deleteTodo = (index) => {
+    console.log('delete', index);
+    // todos에서 index번째 todo 삭제
+    todos.splice(index, 1);
+
+    printTodos();
+};
+const toggleTodo = (index) => {
+    console.log('toggle');
+};
 
 // 폼, input 입력 이벤트 추가하기
 // 입력했을때 todo 추가하기
 $form.addEventListener('submit', checkTodo);
 
-const deleteTodo = () => {
-    console.log('delete')
-};
-// 삭제
+// 삭제, isDone
 document.body.addEventListener('click', (e) => {
+    const index = parseInt(e.target.parentNode.dataset.index);
     if(e.target.className==='delete'){
-        deleteTodo();
+        deleteTodo(index);
+    }
+    else if(e.target.className==='toggle-checked'){
+        toggleTodo(index);
     }
 })
 
